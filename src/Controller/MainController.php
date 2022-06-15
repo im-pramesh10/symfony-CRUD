@@ -39,6 +39,7 @@ class MainController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('notice','Submitted Successfully!!');
+            return $this->redirectToRoute('create');
 
         }
 
@@ -52,6 +53,8 @@ class MainController extends AbstractController
             'list' => $userinfo
 
         ]);
+
+        
         
 
 
