@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <h3 class="mt-5 mb-5">Enter UserInfo</h3>
+            {% for message in app.flashes('notice') %} <!-- Displaying flash with notice-->
+                <div class="alert alert-success">
+                        {{ message }}
+                </div>
+            {% endfor %}
+            <div class="col-md-6 offset-md-3">
+                {{ form_start(form) }}
+                    <div>
+                        {{ form_widget(form.username, {'attr':{'class':'form-control','placeholder':'Name'}}) }}
+                    </div>
+
+                    <div>
+                        {{ form_widget(form.contact, {'attr':{'class':'form-control','placeholder':'Contact'}}) }}
+                    </div>
+
+                    <div>
+                        {{ form_widget(form.submit, {'attr':{'class':'btn btn-info mt-2 text-white'}}) }}
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in list %}
+    <tr>
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.username }}</td>
+      <td>{{ data.contact }}</td>
+      <td>
+            <a class="btn btn-warning" href="{{ path('update', {'id': data.id }) }}">Update</a>
+            <a class="btn btn-danger" href="{{ path('delete', {'id': data.id }) }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    </div>
+
+{% endblock %}
