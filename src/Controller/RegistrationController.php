@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('notice','Registered Successfully!!');
-            return $this->redirectToRoute('create');
+            return $this->redirectToRoute('app_login');
 
         }
 
