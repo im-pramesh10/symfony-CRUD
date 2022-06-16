@@ -21,6 +21,8 @@ class MainController extends AbstractController
     #[Route('/', name: 'create')]
 
     public function create(Request $request, ManagerRegistry $doctrine){
+       
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $usrinfo = new UserInformations();
         $form = $this->createForm(CrudformType::class, $usrinfo); //pass form class and entity type
         $form->handleRequest($request);
@@ -53,7 +55,6 @@ class MainController extends AbstractController
             'list' => $userinfo
 
         ]);
-
         
         
 
