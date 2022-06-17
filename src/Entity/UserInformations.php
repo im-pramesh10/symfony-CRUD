@@ -19,6 +19,9 @@ class UserInformations
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $contact;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class UserInformations
     public function setContact(?string $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
