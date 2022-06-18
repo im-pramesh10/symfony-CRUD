@@ -48,7 +48,7 @@ class MainController extends AbstractController
          //fetching data
         $repository = $doctrine->getRepository(UserInformations::class);
         $userinfo = $repository->findAll();
-
+        
         return $this->render('/main/createform.html.twig',[
 
             'form' => $form->createView(),
@@ -62,9 +62,9 @@ class MainController extends AbstractController
     }
 
 
-     /**
-     * @Route("/update/{id}",name="update")
-     */   
+     
+      #[Route("/update/{id}", name:"update")]
+      
 
      public function update(Request $request, ManagerRegistry $doctrine, $id)
      {
@@ -80,10 +80,10 @@ class MainController extends AbstractController
             // but, the original `$usrinfo` variable has also been updated
             $usrinfo = $form->getData();
 
-                   // tell Doctrine you want to (eventually) save the userinfo (no queries yet)
+            // tell Doctrine you want to (eventually) save the userinfo (no queries yet)
             $entityManager->persist($usrinfo);
 
-        // actually executes the queries (i.e. the INSERT query)
+            // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
 
             $this->addFlash('notice','Updated Successfully!!');
@@ -99,10 +99,9 @@ class MainController extends AbstractController
 
      }
 
-    /**
-     * @Route("/delete/{id}",name="delete")
-     */   
-
+     
+     #[Route("/delete/{id}", name:"delete")]
+     
      public function delete(Request $request, ManagerRegistry $doctrine, $id){
         //stuff
         $entityManager = $doctrine->getManager();

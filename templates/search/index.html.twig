@@ -15,23 +15,24 @@
             <div class="col-md-6 offset-md-3">
                {{ form_start(form) }}
                      <div>
-                        {{ form_widget(form.id, {'attr':{'class':'form-control','placeholder':'id'}}) }}
+                        {{ form_widget(form.id) }}
                     </div>
                     
                     <div>
-                        {{ form_widget(form.username, {'attr':{'class':'form-control','placeholder':'Name'}}) }}
+                        {{ form_widget(form.username) }}
                     </div>
 
                     <div>
-                        {{ form_widget(form.contact, {'attr':{'class':'form-control','placeholder':'Contact'}}) }}
+                        {{ form_widget(form.contact) }}
                     </div>
 
                     <div>
-                        {{ form_widget(form.email, {'attr':{'class':'form-control','placeholder':'Email'}}) }}
+                        {{ form_widget(form.email) }}
                     </div>
 
                     <div>
-                        {{ form_widget(form.submit, {'attr':{'class':'btn btn-info mt-2 text-white'}}) }}
+                        {{ form_widget(form.search) }}
+                        <a class='btn btn-info mt-2 btn-warning' href="{{ path('create') }}">Go Back to ADD USERS</a>
                     </div>
 
                 {{ form_end(form) }}
@@ -39,6 +40,33 @@
             
             </div>
         </div>
+
+            <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in list %}
+    <tr>
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.username }}</td>
+      <td>{{ data.contact }}</td>
+        <td>{{ data.email }}</td>
+      <td>
+            <a class="btn btn-warning" href="{{ path('update', {'id': data.id }) }}">Update</a>
+            <a class="btn btn-danger" href="{{ path('delete', {'id': data.id }) }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
     </div>
 
 {% endblock %}
